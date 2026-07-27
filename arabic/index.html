@@ -25,6 +25,12 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 .field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #333;border-radius:10px;font-size:14px;font-family:'Tajawal',sans-serif;color:#fff;background:#1a1a1a;outline:none;transition:border .2s}
 .field input:focus,.field textarea:focus{border-color:#fc5c7d;background:#111}
 .field textarea{min-height:80px;resize:vertical}
+.color-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.color-row input[type=text]{flex:1;min-width:150px}
+.color-toggle{position:relative}
+.color-toggle input{display:none}
+.color-toggle span{display:inline-block;padding:12px 16px;border:1.5px solid #333;border-radius:10px;font-size:13px;font-weight:500;color:#888;cursor:pointer;transition:all .2s;background:#1a1a1a;white-space:nowrap}
+.color-toggle input:checked+span{border-color:#fc5c7d;color:#fc5c7d;background:#1e1218}
 .check-group{display:flex;flex-wrap:wrap;gap:10px}
 .check-item{position:relative}
 .check-item input{display:none}
@@ -67,8 +73,10 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 <div class="section">
 <div class="section-title">معلومات البراند</div>
 <div class="row"><div class="col"><div class="field"><label><span class="req">*</span> اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div></div><div class="col"><div class="field"><label><span class="req">*</span> وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟" required></textarea></div></div></div>
-<div class="field"><label>وصف الشعار <span class="opt">(اختياري)</span></label><textarea name="logoDesc" id="logoDesc" placeholder="عندك فكرة معينة لشكل الشعار؟ اكتبها هنا بالتفصيل — مثال: أبي شعار فيه فنجال قهوة داخل دائرة بألوان ترابية"></textarea></div>
-<div class="field"><label>الألوان المفضلة</label><input type="text" name="colors" placeholder="مثال: أحمر وأصفر، أزرق داكن"></div>
+<div class="field"><label>وصف الشعار <span class="opt">(اختياري)</span></label><textarea name="logoDesc" id="logoDesc" placeholder="اذا عندك فكرة معينة لشكل الشعار اكتبها هنا"></textarea></div>
+<div class="field"><label>الألوان</label>
+<div class="color-row"><input type="text" name="colors" id="colorsInput" placeholder="مثال: أحمر وأصفر"><label class="color-toggle"><input type="checkbox" id="designerColors" onchange="toggleColors()"><span>🎨 اختيار المصمم</span></label></div>
+</div>
 </div>
 
 <div class="section" id="logoTypeSection">
@@ -114,26 +122,27 @@ var b=document.getElementById('logoBody');
 var t=document.getElementById('logoToggle');
 b.classList.toggle('open');t.classList.toggle('open');
 }
-
+function toggleColors(){
+var cb=document.getElementById('designerColors');
+var inp=document.getElementById('colorsInput');
+if(cb.checked){inp.value='';inp.disabled=true;inp.placeholder='المصمم بيختار الألوان المناسبة لمجالك';inp.style.opacity='.4'}
+else{inp.disabled=false;inp.placeholder='مثال: أحمر وأصفر';inp.style.opacity='1'}
+}
 var ld=document.getElementById('logoDesc');
 ld.addEventListener('input',function(){
 var sec=document.getElementById('logoTypeSection');
-var sty=document.getElementById('styleSection');
-if(this.value.trim().length>10){
-sec.classList.add('disabled');
-}else{
-sec.classList.remove('disabled');
-}
+if(this.value.trim().length>10){sec.classList.add('disabled')}
+else{sec.classList.remove('disabled')}
 });
-
 var W='https://enormous-anteater.pikapod.net/webhook/arabic-logo';
 document.getElementById('logoForm').addEventListener('submit',function(e){
 e.preventDefault();var f=e.target;
 var logoDesc=f.logoDesc.value.trim();
 var lt=f.querySelector('input[name="logoType"]:checked');
 var ts=f.querySelector('input[name="textStyle"]:checked');
-if(!logoDesc && !lt){alert('اكتب وصف الشعار أو اختر نوعه');return;}
-var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"وصف الشعار":logoDesc,"نوع الشعار":logoDesc?'حسب وصف العميل':(lt?lt.value:''),"ستايل الخط":ts?ts.value:'',"الألوان المفضلة":f.colors.value||'',"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
+if(!logoDesc&&!lt){alert('اكتب وصف الشعار أو اختر نوعه');return;}
+var dc=document.getElementById('designerColors').checked;
+var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"وصف الشعار":logoDesc,"نوع الشعار":logoDesc?'حسب وصف العميل':(lt?lt.value:''),"ستايل الخط":ts?ts.value:'',"الألوان المفضلة":dc?'اختيار المصمم حسب مجال البراند':(f.colors.value||''),"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
 document.getElementById('formContent').classList.add('hide');
 document.getElementById('loading').classList.add('show');
 var x=new XMLHttpRequest();x.open('POST',W,true);x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(d));
