@@ -24,20 +24,21 @@ body{font-family:'Tajawal',sans-serif;background:#f0eeeb;min-height:100vh;paddin
 .field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #e0ddd8;border-radius:10px;font-size:14px;font-family:'Tajawal',sans-serif;color:#1a1a1a;background:#f8f7f5;outline:none;transition:border .2s}
 .field input:focus,.field textarea:focus{border-color:#c0392b;background:#fff}
 .field textarea{min-height:80px;resize:vertical}
-.note{font-size:12px;color:#999;margin-bottom:12px;text-align:left}
 .check-group{display:flex;flex-wrap:wrap;gap:10px}
 .check-item{position:relative}
 .check-item input{display:none}
 .check-item span{display:inline-block;padding:10px 18px;border:1.5px solid #e0ddd8;border-radius:8px;font-size:13px;font-weight:500;color:#666;cursor:pointer;transition:all .2s;background:#f8f7f5}
 .check-item input:checked+span{border-color:#c0392b;color:#c0392b;background:#fdf2f0}
-.logo-types{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.logo-type{flex:0 0 calc(50% - 6px);text-align:center;cursor:pointer;position:relative}
+.logo-types{display:flex;flex-wrap:wrap;gap:12px}
+.logo-type{flex:0 0 calc(50% - 6px);cursor:pointer;position:relative}
 .logo-type input{display:none}
-.logo-type .card{padding:16px 10px;border:2px solid #e0ddd8;border-radius:12px;transition:all .2s;background:#f8f7f5}
+.logo-type .card{padding:14px;border:2px solid #e0ddd8;border-radius:12px;transition:all .2s;background:#f8f7f5;text-align:center}
 .logo-type input:checked+.card{border-color:#c0392b;background:#fdf2f0}
-.logo-type .card h4{font-size:14px;font-weight:700;color:#333;margin-bottom:4px}
-.logo-type .card p{font-size:11px;color:#999;line-height:1.4}
-.logo-type .card .examples{font-size:11px;color:#bbb;margin-top:6px}
+.logo-type .card h4{font-size:14px;font-weight:700;color:#333;margin-bottom:2px}
+.logo-type .card .examples-text{font-size:11px;color:#bbb;margin-bottom:8px}
+.logo-type .card .logos{display:flex;justify-content:center;gap:8px;align-items:center;flex-wrap:wrap}
+.logo-type .card .logos img{height:28px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.5;transition:all .2s}
+.logo-type input:checked+.card .logos img{filter:grayscale(0%);opacity:.8}
 .submit-btn{width:100%;padding:15px;background:#c0392b;color:#fff;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;margin-top:8px}
 .submit-btn:hover{opacity:.9}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed}
@@ -65,10 +66,10 @@ body{font-family:'Tajawal',sans-serif;background:#f0eeeb;min-height:100vh;paddin
 <div class="section">
 <div class="section-title">نوع الشعار وشكله</div>
 <div class="logo-types">
-<label class="logo-type"><input type="radio" name="logoType" value="حرفي" required><div class="card"><h4>حرفي</h4><p>حروف الاسم بتصميم مميز</p><div class="examples">مثل CNN, HP</div></div></label>
-<label class="logo-type"><input type="radio" name="logoType" value="نصي"><div class="card"><h4>نصي</h4><p>الاسم كامل بخط مميز</p><div class="examples">مثل Disney, Coca-Cola</div></div></label>
-<label class="logo-type"><input type="radio" name="logoType" value="رمزي"><div class="card"><h4>رمزي</h4><p>رمز أو أيقونة بدون نص</p><div class="examples">مثل Apple, Nike</div></div></label>
-<label class="logo-type"><input type="radio" name="logoType" value="مدمج (نص + رمز)"><div class="card"><h4>مزيج</h4><p>نص مع رمز مدمجين</p><div class="examples">مثل Pizza Hut, Xbox</div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="حرفي" required><div class="card"><h4>حرفي</h4><div class="examples-text">حروف الاسم بتصميم مميز</div><div class="logos"><img src="https://logo.clearbit.com/cnn.com" alt="CNN"><img src="https://logo.clearbit.com/hp.com" alt="HP"></div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="نصي"><div class="card"><h4>نصي</h4><div class="examples-text">الاسم كامل بخط مميز</div><div class="logos"><img src="https://logo.clearbit.com/disney.com" alt="Disney"><img src="https://logo.clearbit.com/coca-cola.com" alt="Coca-Cola"></div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="رمزي"><div class="card"><h4>رمزي</h4><div class="examples-text">رمز أو أيقونة بدون نص</div><div class="logos"><img src="https://logo.clearbit.com/apple.com" alt="Apple"><img src="https://logo.clearbit.com/nike.com" alt="Nike"></div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="مدمج (نص + رمز)"><div class="card"><h4>مزيج</h4><div class="examples-text">نص مع رمز مدمجين</div><div class="logos"><img src="https://logo.clearbit.com/pizzahut.com" alt="Pizza Hut"><img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks"></div></div></label>
 </div>
 </div>
 
