@@ -6,23 +6,67 @@
 <title>تصميم شعار عربي</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Tajawal',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.container{width:100%;max-width:520px}.logo-header{text-align:center;margin-bottom:40px}.logo-header h1{font-size:32px;font-weight:800;background:linear-gradient(135deg,#f0c27f,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}.logo-header p{color:#888;font-size:15px}.form-card{background:#141414;border:1px solid #222;border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}.field{margin-bottom:22px}.field label{display:block;font-size:14px;font-weight:500;color:#ccc;margin-bottom:8px}.field label .req{color:#fc5c7d;margin-right:4px}.field input,.field textarea,.field select{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:13px 16px;color:#fff;font-family:'Tajawal',sans-serif;font-size:15px;transition:border .2s}.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#fc5c7d}.field textarea{height:80px;resize:vertical}.field select{appearance:none;-webkit-appearance:none;cursor:pointer}.field select option{background:#1a1a1a;color:#fff}.submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);color:#fff;font-family:'Tajawal',sans-serif;font-size:17px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:transform .15s,opacity .15s}.submit-btn:hover{transform:translateY(-1px);opacity:.95}.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.loading{display:none;text-align:center;padding:60px 20px}.loading.show{display:block}.loading .spinner{width:48px;height:48px;border:3px solid #333;border-top-color:#fc5c7d;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}@keyframes spin{to{transform:rotate(360deg)}}.loading h2{font-size:22px;margin-bottom:8px}.loading p{color:#888;font-size:14px}.success{display:none;text-align:center;padding:60px 20px}.success.show{display:block}.success .check{width:64px;height:64px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px}.success h2{font-size:24px;margin-bottom:8px}.success p{color:#888;font-size:15px;line-height:1.6}.form-content{display:block}.form-content.hide{display:none}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.container{width:100%;max-width:520px}
+.logo-header{text-align:center;margin-bottom:40px}
+.logo-header h1{font-size:32px;font-weight:800;background:linear-gradient(135deg,#f0c27f,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.logo-header p{color:#888;font-size:15px}
+.form-card{background:#141414;border:1px solid #222;border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:14px;font-weight:500;color:#ccc;margin-bottom:10px}
+.field label .req{color:#fc5c7d;margin-right:4px}
+.field input,.field textarea{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:13px 16px;color:#fff;font-family:'Tajawal',sans-serif;font-size:15px;transition:border .2s}
+.field input:focus,.field textarea:focus{outline:none;border-color:#fc5c7d}
+.field textarea{height:80px;resize:vertical}
+.options{display:flex;flex-wrap:wrap;gap:10px}
+.options .opt{flex:1;min-width:calc(50% - 5px);padding:14px 12px;background:#1a1a1a;border:2px solid #333;border-radius:10px;text-align:center;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:500;color:#aaa;transition:all .2s}
+.options .opt:hover{border-color:#666}
+.options .opt.active{border-color:#fc5c7d;color:#fff;background:#1e1218}
+.options .opt input{display:none}
+.submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);color:#fff;font-family:'Tajawal',sans-serif;font-size:17px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:transform .15s,opacity .15s;margin-top:10px}
+.submit-btn:hover{transform:translateY(-1px);opacity:.95}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.loading{display:none;text-align:center;padding:60px 20px}.loading.show{display:block}
+.loading .spinner{width:48px;height:48px;border:3px solid #333;border-top-color:#fc5c7d;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading h2{font-size:22px;margin-bottom:8px}.loading p{color:#888;font-size:14px}
+.success{display:none;text-align:center;padding:60px 20px}.success.show{display:block}
+.success .check{width:64px;height:64px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px}
+.success h2{font-size:24px;margin-bottom:8px}.success p{color:#888;font-size:15px;line-height:1.6}
+.form-content{display:block}.form-content.hide{display:none}
 </style>
 </head>
 <body>
-<div class="container"><div class="logo-header"><h1>تصميم شعار عربي</h1><p>املأ البيانات وتستلم شعارك جاهز خلال دقائق</p></div><div class="form-card"><div class="form-content" id="formContent"><form id="logoForm"><div class="field"><label><span class="req">*</span>اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div><div class="field"><label><span class="req">*</span>وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟ مطعم؟ متجر؟ خدمات؟" required></textarea></div><div class="field"><label><span class="req">*</span>نوع الشعار</label><select name="logoType" required><option value="" disabled selected>اختر نوع الشعار</option><option value="أيقوني (مثل ستاربكس)">أيقوني (مثل ستاربكس)</option><option value="مدمج (نص + أيقونة)">مدمج (نص + أيقونة)</option></select></div><div class="field"><label><span class="req">*</span>ستايل الخط</label><select name="textStyle" required><option value="" disabled selected>اختر الستايل</option><option value="كلاسيكي تراثي">كلاسيكي تراثي</option><option value="عصري بسيط">عصري بسيط</option><option value="جريء وقوي">جريء وقوي</option><option value="أنيق وفاخر">أنيق وفاخر</option><option value="مرح وشبابي">مرح وشبابي</option></select></div><div class="field"><label>الألوان المفضلة</label><input type="text" name="colors" placeholder="مثال: أحمر وأصفر، أزرق داكن"></div><div class="field"><label>معلومات إضافية</label><textarea name="notes" placeholder="أي تفاصيل ثانية تبي تضيفها"></textarea></div><div class="field"><label><span class="req">*</span>البريد الإلكتروني</label><input type="email" name="email" placeholder="email@example.com" required></div><button type="submit" class="submit-btn">أرسل الطلب</button></form></div><div class="loading" id="loading"><div class="spinner"></div><h2>جاري تصميم شعارك ✨</h2><p>يأخذ من دقيقة إلى دقيقتين — لا تقفل الصفحة</p></div><div class="success" id="success"><div class="check">✓</div><h2>تم استلام طلبك! 🎉</h2><p>شعارك قيد التصميم الحين<br>بنرسله على بريدك خلال دقائق</p></div></div></div>
+<div class="container">
+<div class="logo-header"><h1>تصميم شعار عربي</h1><p>املأ البيانات وتستلم شعارك جاهز خلال دقائق</p></div>
+<div class="form-card">
+<div class="form-content" id="formContent">
+<form id="logoForm">
+<div class="field"><label><span class="req">*</span>اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div>
+<div class="field"><label><span class="req">*</span>وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟ مطعم؟ متجر؟ خدمات؟" required></textarea></div>
+<div class="field"><label><span class="req">*</span>نوع الشعار</label><div class="options" id="logoTypeOpts"><label class="opt" onclick="pick(this)"><input type="radio" name="logoType" value="أيقوني (مثل ستاربكس)" required>أيقوني</label><label class="opt" onclick="pick(this)"><input type="radio" name="logoType" value="مدمج (نص + أيقونة)">مدمج</label></div></div>
+<div class="field"><label><span class="req">*</span>ستايل الخط</label><div class="options" id="styleOpts"><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="كلاسيكي تراثي" required>كلاسيكي</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="عصري بسيط">عصري</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="جريء وقوي">جريء</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="أنيق وفاخر">أنيق</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="مرح وشبابي">مرح</label></div></div>
+<div class="field"><label>الألوان المفضلة</label><input type="text" name="colors" placeholder="مثال: أحمر وأصفر، أزرق داكن"></div>
+<div class="field"><label>معلومات إضافية</label><textarea name="notes" placeholder="أي تفاصيل ثانية تبي تضيفها"></textarea></div>
+<div class="field"><label><span class="req">*</span>البريد الإلكتروني</label><input type="email" name="email" placeholder="email@example.com" required></div>
+<button type="submit" class="submit-btn">أرسل الطلب</button>
+</form></div>
+<div class="loading" id="loading"><div class="spinner"></div><h2>جاري تصميم شعارك ✨</h2><p>يأخذ من دقيقة إلى دقيقتين — لا تقفل الصفحة</p></div>
+<div class="success" id="success"><div class="check">✓</div><h2>تم استلام طلبك! 🎉</h2><p>شعارك قيد التصميم الحين<br>بنرسله على بريدك خلال دقائق</p></div>
+</div></div>
 <script>
+function pick(el){el.parentNode.querySelectorAll('.opt').forEach(function(o){o.classList.remove('active')});el.classList.add('active');el.querySelector('input').checked=true;}
 var W='https://enormous-anteater.pikapod.net/webhook/arabic-logo';
 document.getElementById('logoForm').addEventListener('submit',function(e){
-e.preventDefault();
-var f=e.target;
-var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"نوع الشعار":f.logoType.value,"ستايل الخط":f.textStyle.value,"الألوان المفضلة":f.colors.value||'',"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
+e.preventDefault();var f=e.target;
+var lt=f.querySelector('input[name="logoType"]:checked');
+var ts=f.querySelector('input[name="textStyle"]:checked');
+if(!lt||!ts){alert('اختر نوع الشعار والستايل');return;}
+var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"نوع الشعار":lt.value,"ستايل الخط":ts.value,"الألوان المفضلة":f.colors.value||'',"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
 document.getElementById('formContent').classList.add('hide');
 document.getElementById('loading').classList.add('show');
-var x=new XMLHttpRequest();
-x.open('POST',W,true);
-x.setRequestHeader('Content-Type','application/json');
-x.send(JSON.stringify(d));
+var x=new XMLHttpRequest();x.open('POST',W,true);x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(d));
 setTimeout(function(){document.getElementById('loading').classList.remove('show');document.getElementById('success').classList.add('show');},3000);
 });
 </script>
