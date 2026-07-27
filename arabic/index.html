@@ -7,56 +7,97 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Tajawal',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.container{width:100%;max-width:520px}
-.logo-header{text-align:center;margin-bottom:40px}
-.logo-header h1{font-size:32px;font-weight:800;background:linear-gradient(135deg,#f0c27f,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
-.logo-header p{color:#888;font-size:15px}
-.form-card{background:#141414;border:1px solid #222;border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.field{margin-bottom:22px}
-.field label{display:block;font-size:14px;font-weight:500;color:#ccc;margin-bottom:10px}
-.field label .req{color:#fc5c7d;margin-right:4px}
-.field input,.field textarea{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:13px 16px;color:#fff;font-family:'Tajawal',sans-serif;font-size:15px;transition:border .2s}
-.field input:focus,.field textarea:focus{outline:none;border-color:#fc5c7d}
-.field textarea{height:80px;resize:vertical}
-.options{display:flex;flex-wrap:wrap;gap:10px}
-.options .opt{flex:1;min-width:calc(50% - 5px);padding:14px 12px;background:#1a1a1a;border:2px solid #333;border-radius:10px;text-align:center;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:500;color:#aaa;transition:all .2s}
-.options .opt:hover{border-color:#666}
-.options .opt.active{border-color:#fc5c7d;color:#fff;background:#1e1218}
-.options .opt input{display:none}
-.submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);color:#fff;font-family:'Tajawal',sans-serif;font-size:17px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:transform .15s,opacity .15s;margin-top:10px}
-.submit-btn:hover{transform:translateY(-1px);opacity:.95}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+body{font-family:'Tajawal',sans-serif;background:#f0eeeb;min-height:100vh;padding:30px 16px 60px;color:#1a1a1a}
+.wrap{max-width:700px;margin:0 auto}
+.hero{text-align:center;margin-bottom:35px}
+.hero h1{font-size:28px;font-weight:800;color:#1a1a1a;margin-bottom:8px}
+.hero p{color:#888;font-size:14px}
+.section{background:#fff;border-radius:14px;padding:24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.section-title{font-size:15px;font-weight:700;color:#c0392b;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.section-title::before{content:'';width:8px;height:8px;background:#c0392b;border-radius:50%;display:inline-block}
+.row{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.row .col{flex:1;min-width:200px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px}
+.field label .req{color:#c0392b}
+.field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #e0ddd8;border-radius:10px;font-size:14px;font-family:'Tajawal',sans-serif;color:#1a1a1a;background:#f8f7f5;outline:none;transition:border .2s}
+.field input:focus,.field textarea:focus{border-color:#c0392b;background:#fff}
+.field textarea{min-height:80px;resize:vertical}
+.note{font-size:12px;color:#999;margin-bottom:12px;text-align:left}
+.check-group{display:flex;flex-wrap:wrap;gap:10px}
+.check-item{position:relative}
+.check-item input{display:none}
+.check-item span{display:inline-block;padding:10px 18px;border:1.5px solid #e0ddd8;border-radius:8px;font-size:13px;font-weight:500;color:#666;cursor:pointer;transition:all .2s;background:#f8f7f5}
+.check-item input:checked+span{border-color:#c0392b;color:#c0392b;background:#fdf2f0}
+.logo-types{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.logo-type{flex:0 0 calc(50% - 6px);text-align:center;cursor:pointer;position:relative}
+.logo-type input{display:none}
+.logo-type .card{padding:16px 10px;border:2px solid #e0ddd8;border-radius:12px;transition:all .2s;background:#f8f7f5}
+.logo-type input:checked+.card{border-color:#c0392b;background:#fdf2f0}
+.logo-type .card h4{font-size:14px;font-weight:700;color:#333;margin-bottom:4px}
+.logo-type .card p{font-size:11px;color:#999;line-height:1.4}
+.logo-type .card .examples{font-size:11px;color:#bbb;margin-top:6px}
+.submit-btn{width:100%;padding:15px;background:#c0392b;color:#fff;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;margin-top:8px}
+.submit-btn:hover{opacity:.9}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
 .loading{display:none;text-align:center;padding:60px 20px}.loading.show{display:block}
-.loading .spinner{width:48px;height:48px;border:3px solid #333;border-top-color:#fc5c7d;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}
+.loading .spinner{width:44px;height:44px;border:3px solid #e0ddd8;border-top-color:#c0392b;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading h2{font-size:22px;margin-bottom:8px}.loading p{color:#888;font-size:14px}
+.loading h2{font-size:20px;margin-bottom:6px;color:#1a1a1a}.loading p{color:#888;font-size:13px}
 .success{display:none;text-align:center;padding:60px 20px}.success.show{display:block}
-.success .check{width:64px;height:64px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px}
-.success h2{font-size:24px;margin-bottom:8px}.success p{color:#888;font-size:15px;line-height:1.6}
+.success .check{width:56px;height:56px;background:#c0392b;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-size:28px}
+.success h2{font-size:22px;margin-bottom:6px;color:#1a1a1a}.success p{color:#888;font-size:14px;line-height:1.6}
 .form-content{display:block}.form-content.hide{display:none}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="logo-header"><h1>تصميم شعار عربي</h1><p>املأ البيانات وتستلم شعارك جاهز خلال دقائق</p></div>
-<div class="form-card">
-<div class="form-content" id="formContent">
-<form id="logoForm">
-<div class="field"><label><span class="req">*</span>اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div>
-<div class="field"><label><span class="req">*</span>وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟ مطعم؟ متجر؟ خدمات؟" required></textarea></div>
-<div class="field"><label><span class="req">*</span>نوع الشعار</label><div class="options" id="logoTypeOpts"><label class="opt" onclick="pick(this)"><input type="radio" name="logoType" value="أيقوني (مثل ستاربكس)" required>أيقوني</label><label class="opt" onclick="pick(this)"><input type="radio" name="logoType" value="مدمج (نص + أيقونة)">مدمج</label></div></div>
-<div class="field"><label><span class="req">*</span>ستايل الخط</label><div class="options" id="styleOpts"><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="كلاسيكي تراثي" required>كلاسيكي</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="عصري بسيط">عصري</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="جريء وقوي">جريء</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="أنيق وفاخر">أنيق</label><label class="opt" onclick="pick(this)"><input type="radio" name="textStyle" value="مرح وشبابي">مرح</label></div></div>
+<div class="wrap">
+<div class="hero"><h1>تصميم شعار عربي</h1><p>املأ البيانات وتستلم شعارك جاهز خلال دقائق</p></div>
+<div class="form-content" id="formContent"><form id="logoForm">
+
+<div class="section">
+<div class="section-title">معلومات البراند</div>
+<div class="row"><div class="col"><div class="field"><label><span class="req">*</span> اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div></div><div class="col"><div class="field"><label><span class="req">*</span> وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟" required></textarea></div></div></div>
 <div class="field"><label>الألوان المفضلة</label><input type="text" name="colors" placeholder="مثال: أحمر وأصفر، أزرق داكن"></div>
-<div class="field"><label>معلومات إضافية</label><textarea name="notes" placeholder="أي تفاصيل ثانية تبي تضيفها"></textarea></div>
-<div class="field"><label><span class="req">*</span>البريد الإلكتروني</label><input type="email" name="email" placeholder="email@example.com" required></div>
+</div>
+
+<div class="section">
+<div class="section-title">نوع الشعار وشكله</div>
+<div class="logo-types">
+<label class="logo-type"><input type="radio" name="logoType" value="حرفي" required><div class="card"><h4>حرفي</h4><p>حروف الاسم بتصميم مميز</p><div class="examples">مثل CNN, HP</div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="نصي"><div class="card"><h4>نصي</h4><p>الاسم كامل بخط مميز</p><div class="examples">مثل Disney, Coca-Cola</div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="رمزي"><div class="card"><h4>رمزي</h4><p>رمز أو أيقونة بدون نص</p><div class="examples">مثل Apple, Nike</div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="مدمج (نص + رمز)"><div class="card"><h4>مزيج</h4><p>نص مع رمز مدمجين</p><div class="examples">مثل Pizza Hut, Xbox</div></div></label>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">ستايل الخط</div>
+<div class="check-group">
+<label class="check-item"><input type="radio" name="textStyle" value="كلاسيكي" required><span>كلاسيكي</span></label>
+<label class="check-item"><input type="radio" name="textStyle" value="عصري"><span>عصري</span></label>
+<label class="check-item"><input type="radio" name="textStyle" value="جريء"><span>جريء</span></label>
+<label class="check-item"><input type="radio" name="textStyle" value="أنيق"><span>أنيق</span></label>
+<label class="check-item"><input type="radio" name="textStyle" value="مرح"><span>مرح</span></label>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">ملاحظات</div>
+<div class="field"><textarea name="notes" placeholder="أي تفاصيل ثانية تبي تضيفها"></textarea></div>
+</div>
+
+<div class="section">
+<div class="field"><label><span class="req">*</span> البريد الإلكتروني</label><input type="email" name="email" placeholder="email@example.com" required></div>
 <button type="submit" class="submit-btn">أرسل الطلب</button>
+</div>
+
 </form></div>
-<div class="loading" id="loading"><div class="spinner"></div><h2>جاري تصميم شعارك ✨</h2><p>يأخذ من دقيقة إلى دقيقتين — لا تقفل الصفحة</p></div>
-<div class="success" id="success"><div class="check">✓</div><h2>تم استلام طلبك! 🎉</h2><p>شعارك قيد التصميم الحين<br>بنرسله على بريدك خلال دقائق</p></div>
-</div></div>
+<div class="loading" id="loading"><div class="spinner"></div><h2>جاري تصميم شعارك ✨</h2><p>يأخذ من دقيقة إلى دقيقتين</p></div>
+<div class="success" id="success"><div class="check">✓</div><h2>تم استلام طلبك! 🎉</h2><p>شعارك قيد التصميم<br>بنرسله على بريدك خلال دقائق</p></div>
+</div>
 <script>
-function pick(el){el.parentNode.querySelectorAll('.opt').forEach(function(o){o.classList.remove('active')});el.classList.add('active');el.querySelector('input').checked=true;}
 var W='https://enormous-anteater.pikapod.net/webhook/arabic-logo';
 document.getElementById('logoForm').addEventListener('submit',function(e){
 e.preventDefault();var f=e.target;
