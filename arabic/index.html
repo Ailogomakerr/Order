@@ -21,6 +21,7 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 .field:last-child{margin-bottom:0}
 .field label{display:block;font-size:13px;font-weight:600;color:#ccc;margin-bottom:6px}
 .field label .req{color:#fc5c7d}
+.field label .opt{color:#666;font-weight:400;font-size:11px}
 .field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #333;border-radius:10px;font-size:14px;font-family:'Tajawal',sans-serif;color:#fff;background:#1a1a1a;outline:none;transition:border .2s}
 .field input:focus,.field textarea:focus{border-color:#fc5c7d;background:#111}
 .field textarea{min-height:80px;resize:vertical}
@@ -29,7 +30,12 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 .check-item input{display:none}
 .check-item span{display:inline-block;padding:10px 18px;border:1.5px solid #333;border-radius:8px;font-size:13px;font-weight:500;color:#888;cursor:pointer;transition:all .2s;background:#1a1a1a}
 .check-item input:checked+span{border-color:#fc5c7d;color:#fc5c7d;background:#1e1218}
-.logo-types{display:flex;flex-wrap:wrap;gap:12px}
+.collapsible{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+.collapsible .arrow{transition:transform .3s;font-size:12px;color:#888}
+.collapsible.open .arrow{transform:rotate(180deg)}
+.collapse-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.collapse-body.open{max-height:600px}
+.logo-types{display:flex;flex-wrap:wrap;gap:12px;padding-top:16px}
 .logo-type{flex:0 0 calc(50% - 6px);cursor:pointer;position:relative}
 .logo-type input{display:none}
 .logo-type .card{padding:16px 10px;border:2px solid #333;border-radius:12px;transition:all .2s;background:#1a1a1a;text-align:center}
@@ -39,6 +45,7 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 .logo-type .card .brands{display:flex;justify-content:center;gap:12px}
 .logo-type .card .brands span{font-size:12px;color:#555;font-weight:600;font-style:italic}
 .logo-type input:checked+.card .brands span{color:#fc5c7d}
+.section.disabled{opacity:.3;pointer-events:none}
 .submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f0c27f,#fc5c7d);color:#fff;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;margin-top:8px}
 .submit-btn:hover{opacity:.9}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed}
@@ -60,23 +67,26 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 <div class="section">
 <div class="section-title">معلومات البراند</div>
 <div class="row"><div class="col"><div class="field"><label><span class="req">*</span> اسم البراند</label><input type="text" name="brandName" placeholder="مثال: شاورتكا" required></div></div><div class="col"><div class="field"><label><span class="req">*</span> وصف النشاط</label><textarea name="description" placeholder="وش يسوي البراند؟" required></textarea></div></div></div>
+<div class="field"><label>وصف الشعار <span class="opt">(اختياري)</span></label><textarea name="logoDesc" id="logoDesc" placeholder="عندك فكرة معينة لشكل الشعار؟ اكتبها هنا بالتفصيل — مثال: أبي شعار فيه فنجال قهوة داخل دائرة بألوان ترابية"></textarea></div>
 <div class="field"><label>الألوان المفضلة</label><input type="text" name="colors" placeholder="مثال: أحمر وأصفر، أزرق داكن"></div>
 </div>
 
-<div class="section">
-<div class="section-title">نوع الشعار وشكله</div>
+<div class="section" id="logoTypeSection">
+<div class="section-title collapsible" id="logoToggle" onclick="toggleLogo()">نوع الشعار وشكله<span class="arrow">▼</span></div>
+<div class="collapse-body" id="logoBody">
 <div class="logo-types">
-<label class="logo-type"><input type="radio" name="logoType" value="حرفي" required><div class="card"><h4>حرفي</h4><p>حروف الاسم بتصميم مميز</p><div class="brands"><span>CNN</span><span>HP</span></div></div></label>
+<label class="logo-type"><input type="radio" name="logoType" value="حرفي"><div class="card"><h4>حرفي</h4><p>حروف الاسم بتصميم مميز</p><div class="brands"><span>CNN</span><span>HP</span></div></div></label>
 <label class="logo-type"><input type="radio" name="logoType" value="نصي"><div class="card"><h4>نصي</h4><p>الاسم كامل بخط مميز</p><div class="brands"><span>Disney</span><span>Coca-Cola</span></div></div></label>
 <label class="logo-type"><input type="radio" name="logoType" value="رمزي"><div class="card"><h4>رمزي</h4><p>رمز أو أيقونة بدون نص</p><div class="brands"><span>Apple</span><span>Nike</span></div></div></label>
 <label class="logo-type"><input type="radio" name="logoType" value="مدمج (نص + رمز)"><div class="card"><h4>مزيج</h4><p>نص مع رمز مدمجين</p><div class="brands"><span>Starbucks</span><span>Pizza Hut</span></div></div></label>
 </div>
 </div>
+</div>
 
-<div class="section">
+<div class="section" id="styleSection">
 <div class="section-title">ستايل الخط</div>
 <div class="check-group">
-<label class="check-item"><input type="radio" name="textStyle" value="كلاسيكي" required><span>كلاسيكي</span></label>
+<label class="check-item"><input type="radio" name="textStyle" value="كلاسيكي"><span>كلاسيكي</span></label>
 <label class="check-item"><input type="radio" name="textStyle" value="عصري"><span>عصري</span></label>
 <label class="check-item"><input type="radio" name="textStyle" value="جريء"><span>جريء</span></label>
 <label class="check-item"><input type="radio" name="textStyle" value="أنيق"><span>أنيق</span></label>
@@ -99,13 +109,31 @@ body{font-family:'Tajawal',sans-serif;background:#0a0a0a;min-height:100vh;paddin
 <div class="success" id="success"><div class="check">✓</div><h2>تم استلام طلبك! 🎉</h2><p>شعارك قيد التصميم<br>بنرسله على بريدك خلال دقائق</p></div>
 </div>
 <script>
+function toggleLogo(){
+var b=document.getElementById('logoBody');
+var t=document.getElementById('logoToggle');
+b.classList.toggle('open');t.classList.toggle('open');
+}
+
+var ld=document.getElementById('logoDesc');
+ld.addEventListener('input',function(){
+var sec=document.getElementById('logoTypeSection');
+var sty=document.getElementById('styleSection');
+if(this.value.trim().length>10){
+sec.classList.add('disabled');
+}else{
+sec.classList.remove('disabled');
+}
+});
+
 var W='https://enormous-anteater.pikapod.net/webhook/arabic-logo';
 document.getElementById('logoForm').addEventListener('submit',function(e){
 e.preventDefault();var f=e.target;
+var logoDesc=f.logoDesc.value.trim();
 var lt=f.querySelector('input[name="logoType"]:checked');
 var ts=f.querySelector('input[name="textStyle"]:checked');
-if(!lt||!ts){alert('اختر نوع الشعار والستايل');return;}
-var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"نوع الشعار":lt.value,"ستايل الخط":ts.value,"الألوان المفضلة":f.colors.value||'',"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
+if(!logoDesc && !lt){alert('اكتب وصف الشعار أو اختر نوعه');return;}
+var d={"اسم البراند":f.brandName.value,"وصف النشاط":f.description.value,"وصف الشعار":logoDesc,"نوع الشعار":logoDesc?'حسب وصف العميل':(lt?lt.value:''),"ستايل الخط":ts?ts.value:'',"الألوان المفضلة":f.colors.value||'',"معلومات إضافية":f.notes.value||'',"البريد الإلكتروني":f.email.value};
 document.getElementById('formContent').classList.add('hide');
 document.getElementById('loading').classList.add('show');
 var x=new XMLHttpRequest();x.open('POST',W,true);x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(d));
